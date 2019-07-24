@@ -36,32 +36,17 @@
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="centroSalud" type="search" required onkeypress="javascript:doit_onkeypress(event);">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
       </form>
     </div>
   </nav>
-    
-
-
-      <nav class="navbar navbar-light bg-light">
-          <div class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="centroSalud">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="consulta()">Search</button>
-            <p>Lorem ipsum dolor sit amet, </p>
-          </div>
-        </nav>
-
-        <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-  </div>
-</div>
-
+    <button id="boton" onclick="consulta()" class="waves-effect waves-light btn"> buscar</button>
  <input type="text" id="text1" placeholder="text1" class="form-control ml-sm-2">
+
+
 <hr>
 <h5>Tipo de Receta</h5>
 <div class="container py-5">

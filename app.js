@@ -141,6 +141,8 @@ citiesRef.doc("BJ").set({
 }
 
 
+
+
 function consulta(){
     centroSalud = document.getElementById('centroSalud').value;
     db.collection("Area Salud Limon").doc(centroSalud)
@@ -154,6 +156,8 @@ function consulta(){
 }
 
 
+ 
+        
 
 
 
