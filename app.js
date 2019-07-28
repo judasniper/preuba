@@ -147,16 +147,34 @@ function consulta(){
     centroSalud = document.getElementById('centroSalud').value;
     db.collection("Area Salud Limon").doc(centroSalud)
     .onSnapshot(function(doc) {
-        console.log("Current data: ", doc.data().
-        Descripcion);
-        //document.getElementById('text1').value= "doc.data().name";
-        document.getElementById('text1').value = doc.data().
-        Descripcion;
+        document.getElementById('text1').value = doc.data().Descripcion;
+        console.log(doc.data().Descripcion)
     });
 }
 
+var centroSalud = document.getElementById ('centroSalud');
+centroSalud.addEventListener("keypress", myFunction)
 
+var botonBuscar = document.getElementById('btnBuscar');
+botonBuscar.addEventListener("click", consulta);
+
+function msj(){
+    console.log("josuea Aqui")
+}
+
+function myFunction(event) {
+    var x = event.which || event.keyCode;
+    //document.getElementById("demo").innerHTML = "The Unicode value is: " + x;
+  if (x==13){
+      console.log('x')
+    consulta();
+  }
+  
+  }
  
+
+
+
         
 
 
