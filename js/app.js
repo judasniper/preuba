@@ -1,3 +1,9 @@
+
+var d = new Date();
+var n = d.toLocaleDateString();
+document.getElementById('FechaActual').innerHTML= n;
+
+
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
     apiKey: 'AIzaSyC74QNWfrpQ_dlAxU9fkSGYL-qDgYxiHn4',
@@ -10,19 +16,31 @@ firebase.initializeApp({
 //agregar documentos
 function guardar (){
      
-    var nombre= document.getElementById('nombre').value;
+    var receta= document.getElementById('numReceta').value;
     var apellido= document.getElementById('apellido').value;
     var fecha= document.getElementById('fecha').value;
-    db.collection("users").add({
-        first: nombre,
-        last: apellido,
-        born: fecha
+    var ebais = document.getElementById('centroSalud').value;
+    var fechaReceta = document.getElementById('fechaReceta').value;
+    var horaEntra = document.getElementById('horaEntra').value;
+
+
+    console.log(fechaReceta);
+    db.collection("bdTiempos").add({
+        Ebais: ebais,
+        Receta : receta,
+        FechaReceta: fechaReceta,
+        FechaActual: n, 
+        HoraEntra : horaEntra
+               
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
        document.getElementById('nombre').value='';
        document.getElementById('apellido').value='';
        document.getElementById('fecha').value='';
+       document.getElementById('fechaReceta').value='';
+       document.getElementById('numReceta').value='';
+       document.getElementById('horaEntra').value='';
 
         // otra opcion para borrar 
         // document.getElementById("miForm").reset();
@@ -35,27 +53,34 @@ function guardar (){
 
 //Leer documentos.
 var tabla = document.getElementById('tabla');
-db.collection("users").onSnapshot((querySnapshot) => {
+db.collection("bdTiempos").onSnapshot((querySnapshot) => {
     tabla.innerHTML='';
     querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().first}`);
+
+        // let date = doc.data().fecha.toDate() // convierte a un objeto Date de JS
+        // var fecha = date.toDateString();
+        // console.log(`${doc.id} => ${doc.data().first}`);
         tabla.innerHTML += `
         <tr>
         <th scope="row">${doc.id}</th>
-        <td>${doc.data().first}</td>
-        <td>${doc.data().last}</td>
-        <td>${doc.data().born}</td>
+        <td>${doc.data().FechaActual}</td>
+        <td>${doc.data().Ebais}</td>
+        <td>${doc.data().Receta}</td>
+        <td>${doc.data().FechaReceta}</td>
+        <td>${doc.data().HoraEntra}</td>
         <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')"> eliminar</button></td>
-        <td><button class="btn btn-warning"onclick="editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}')"> editar</button></td>
+        <td><button class="btn btn-warning"onclick="editar('${doc.id}','${doc.data().FechaActual}','${doc.data().Ebais}','${doc.data().Receta}','${doc.data().FechaReceta}','${doc.data().HoraEntra}')"> editar</button></td>
         </tr>        
         ` //<- ojo a estas comillas especiales
+
     });
 });
+
 
 //borrar documentos.
 
 function eliminar(id){
-    db.collection("users").doc(id).delete().then(function() {
+    db.collection("bdTiempos").doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
         console.error("Error removing document: ", error);
@@ -80,7 +105,7 @@ boton.innerHTML='Editar';
 
 boton.onclick = function (){
 
-    var washingtonRef = db.collection("users").doc(id);
+    var washingtonRef = db.collection("bdTiempos").doc(id);
 
     // Set the "capital" field of the city 'DC'
 
