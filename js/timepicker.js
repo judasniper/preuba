@@ -28,7 +28,7 @@ $('.clockpicker').clockpicker()
   .find('input').change(function(){
     console.log(this.value);
   });
-var input = $('#single-input2').clockpicker({
+var input = $('#horaDigita').clockpicker({
   placement: 'bottom',
   align: 'left',
   autoclose: true,
@@ -51,7 +51,7 @@ $('.clockpicker').clockpicker()
   .find('input').change(function(){
     console.log(this.value);
   });
-var input = $('#single-input3').clockpicker({
+var input = $('#horaAcopio').clockpicker({
   placement: 'bottom',
   align: 'left',
   autoclose: true,
@@ -74,7 +74,7 @@ $('.clockpicker').clockpicker()
   .find('input').change(function(){
     console.log(this.value);
   });
-var input = $('#single-input4').clockpicker({
+var input = $('#horaRevisa').clockpicker({
   placement: 'bottom',
   align: 'left',
   autoclose: true,

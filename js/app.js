@@ -17,8 +17,7 @@ firebase.initializeApp({
 function guardar (){
      
     var receta= document.getElementById('numReceta').value;
-    var apellido= document.getElementById('apellido').value;
-    var fecha= document.getElementById('fecha').value;
+    //var apellido= document.getElementById('apellido').value;
     var ebais = document.getElementById('centroSalud').value;
     var fechaReceta = document.getElementById('fechaReceta').value;
     var horaEntra = document.getElementById('horaEntra').value;
@@ -31,16 +30,16 @@ function guardar (){
         FechaReceta: fechaReceta,
         FechaActual: n, 
         HoraEntra : horaEntra
-               
+                
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
-       document.getElementById('nombre').value='';
-       document.getElementById('apellido').value='';
-       document.getElementById('fecha').value='';
+      // document.getElementById('nombre').value='';
+       //document.getElementById('apellido').value='';
+       //document.getElementById('fecha').value='';
        document.getElementById('fechaReceta').value='';
        document.getElementById('numReceta').value='';
-       document.getElementById('horaEntra').value='';
+       //document.getElementById('horaEntra').value='';
 
         // otra opcion para borrar 
         // document.getElementById("miForm").reset();
@@ -68,6 +67,9 @@ db.collection("bdTiempos").onSnapshot((querySnapshot) => {
         <td>${doc.data().Receta}</td>
         <td>${doc.data().FechaReceta}</td>
         <td>${doc.data().HoraEntra}</td>
+        <td>${doc.data().HoraDigita}</td>
+        <td>${doc.data().HoraAcopio}</td>
+        <td>${doc.data().HoraRevisa}</td>
         <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')"> eliminar</button></td>
         <td><button class="btn btn-warning"onclick="editar('${doc.id}','${doc.data().FechaActual}','${doc.data().Ebais}','${doc.data().Receta}','${doc.data().FechaReceta}','${doc.data().HoraEntra}')"> editar</button></td>
         </tr>        
@@ -76,9 +78,7 @@ db.collection("bdTiempos").onSnapshot((querySnapshot) => {
     });
 });
 
-
 //borrar documentos.
-
 function eliminar(id){
     db.collection("bdTiempos").doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
@@ -87,7 +87,6 @@ function eliminar(id){
     });
 
 }
-
 
 //editar documentos
 function editar(id,nombre,apellido,fecha){
