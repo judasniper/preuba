@@ -1,105 +1,307 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="css/style.css" rel="stylesheet">
-</head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<body>
-  <!-- Start your project here-->
- <!-- Main navigation -->
-<header>
-  <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+      <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!--firebasestore-->
+    <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js"></script>
+
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+<script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+<!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+
+<!-- timepicker -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap-clockpicker.min.css">
+<link rel="stylesheet" type="text/css" href="css/github.min.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <strong>MDB</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
-        aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-        </ul>
-        <form class="form-inline">
-          <div class="md-form mt-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          </div>
-        </form>
+      <div class="text-center mt-4 mb-5">
+        <img class="d-block mx-auto mb-4" src="img/svg/reloj.svg" alt="" width="72" height="72">
+        <h2>Tiempos de Espera</h2>
+      
       </div>
-    </div>
-  </nav>
-  <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
-      <!-- Content -->
-      <div class="container">
-        <!--Grid row-->
-        <div class="row">
-          <!--Grid column-->
-          <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
-            <h1 class="h1-responsive font-weight-bold mt-sm-5">Make purchases with our app </h1>
-            <hr class="hr-light">
-            <h6 class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi
-              fuga nesciunt
-              dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
-              iste.</h6>
-            <a class="btn btn-white" href="tiempos.html">Ingresar</a>
-            <a class="btn btn-outline-white">Learn more</a>
+
+  <div class="container">
+   
+    <div class="row">
+    
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Centro de Salud</h4>
+        <div class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="firstName">Codigo</label>
+              <input type="text" class="form-control" id="centroSalud" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-md-8 mb-3">
+              <label for="lastName">Descripcion</label>
+              <input type="text" class="form-control" id="text1" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
           </div>
-          <!--Grid column-->
-          <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInRight" data-wow-delay="0.3s">
-            <img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png" alt="" class="img-fluid">
+                <!--DatePicker-->
+          <div class="bootstrap-iso">
+           <div class="container-fluid">
+            <div class="row">
+             <div class="col-md-12 col-sm-12 col-xs-12">
+              <form action="https://formden.com/post/MlKtmY4x/" class="form-horizontal" method="post">
+               <div class="form-group ">
+                <label class="control-label col-sm-4 requiredField" for="date">
+                 Fecha de Receta
+                 <span class="asteriskField">
+                  *
+                 </span>
+                </label>
+                <div class="col-sm-12">
+                 <div class="input-group">
+                  <div class="input-group-addon">
+                   <i class="fa fa-calendar">
+                   </i>
+                  </div>
+                  <input class="form-control" id="fechaReceta" name="fechaReceta" placeholder="MM/DD/YYYY" type="text"/>
+                 </div>
+                </div>
+               </div>
+               <div class="form-group">
+                <div class="col-sm-12 col-sm-offset-2">
+                 <input name="_honey" style="display:none" type="text"/>
+                 </div>
+               </div>
+              </form>
+             </div>
+            </div>
+           </div>
           </div>
-          <!--Grid column-->
+          <!--fin DatePicker-->
+          <div class="mb-3">
+            <label for="username">Receta</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">®</span>
+              </div>
+              <input type="text" class="form-control" id="numReceta" placeholder="Digite el Numero de Receta" required>
+              <div class="invalid-feedback" style="width: 100%;">
+                Your username is required.
+              </div>
+            </div>
+          </div>
+
+          <!--hora entra Receta-->
+          <div class="mb-3"> 
+            <input type="text" class="form-control" id="horaEntra" value="07:00" placeholder="Hora entra Receta">
+                <script type="text/javascript">
+                $('#single-input').clockpicker({
+                  placement: 'bottom',
+                  align: 'right',
+                  autoclose: true,
+                  'default': '20:48'
+                });
+                </script>
+          </div>  
+            <!--hora *Digita Receta-->
+          <div class="mb-3"> 
+            <input type="text" class="form-control" id="horaDigita" value="07:00" placeholder="Hora Digita Receta">
+                <script type="text/javascript">
+                $('#single-input2').clockpicker({
+                  placement: 'bottom',
+                  align: 'right',
+                  autoclose: true,
+                  'default': '20:48'
+                });
+                </script>
+          </div>
+            <!--hora Acopio Receta-->
+          <div class="mb-3"> 
+            <input type="text" class="form-control" id="horaAcopio" value="07:00" placeholder="Hora Acopio Receta">
+                <script type="text/javascript">
+                $('#single-input3').clockpicker({
+                  placement: 'bottom',
+                  align: 'right',
+                  autoclose: true,
+                  'default': '20:48'
+                });
+                </script>
+          </div>
+            <!--hora Revision final Receta-->
+          <div class="mb-3"> 
+            <input type="text" class="form-control" id="horaRevisa" value="07:00" placeholder="Hora Revision final ">
+                <script type="text/javascript">
+                $('#single-input4').clockpicker({
+                  placement: 'bottom',
+                  align: 'right',
+                  autoclose: true,
+                  'default': '20:48'
+                });
+                </script>
+          </div>
+   
+          
+         
+          <hr class="mb-4">
+
+          <h4 class="mb-3">Tipo de Receta</h4>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+              <label class="custom-control-label" for="credit">0 Consulta</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="debit">3 Copia</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="paypal">9 Urgencias</label>
+            </div>
+          </div>
+     
+          
+          <hr class="mb-4">
+            <button class="btn btn-info btn-lg btn-block" id="boton" onclick="guardar()" >Guardar</button>
         </div>
-        <!--Grid row-->
       </div>
-      <!-- Content -->
     </div>
-    <!-- Mask & flexbox options-->
+     
+
+
+        
+        
+      
+      
+      <table class="table my-3">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Ebais</th>
+                  <th scope="col">Receta</th>
+                  <th scope="col">Fecha Entra</th>
+                  <th scope="col">Hora Entra</th>
+                  <th scope="col">Hora Digita</th>
+                  <th scope="col">Hora Acopio</th>
+                  <th scope="col">Hora Revisa</th>
+                  <th>Eliminar</th>
+                  <th>Editar</th>
+                </tr>
+              </thead>
+              <tbody id="tabla">
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Fecha Actual</td>
+                  <td>Ebais</td>
+                  <td>Receta</td>
+                  <td>Entra</td>
+                  <td>Digita</td>
+                  <td>Acopio</td>
+                  <td>@Revisa</td>
+                </tr>
+                
+              </tbody>
+            </table>
+
   </div>
-  <!-- Full Page Intro -->
-</header>
-<!-- Main navigation -->
-  <!-- Start your project here-->
+ 
 
+<footer class="footer">
+      <div class="container-fluid">
+        <div class="row text-muted">
+          <div class="col-8 text-left">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="text-muted" href="#">Support</a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-muted" href="#">Privacy</a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-muted" href="#">Terms of Service</a>
+              </li>
+              <li class="list-inline-item">
+                <a class="text-muted" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4 text-right">
+            <p class="mb-0" id="FechaActual">
+               - <a href="dashboard.html" class="text-muted">Spark</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+</div>
   <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+  <!--javascript personal-->
+  <script src="js/app.js"></script>
 
-  <script type="text/javascript">// Animations initialization
-new WOW().init();</script>
-</body>
+  <!--para timepicker-->
+  <script type="text/javascript" src="js/bootstrap-clockpicker.min.js"></script>
+  
 
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+$(document).ready(function(){
+  var date_input=$('input[name="fechaReceta"]'); //our date input has the name "date"
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  date_input.datepicker({
+    format: 'dd/mm/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+  })
+})
+</script>
+
+<script src="js/timepicker.js"></script>
+
+<script type="text/javascript">
+hljs.configure({tabReplace: '    '});
+hljs.initHighlightingOnLoad();
+</script>
+
+
+    
+  </body>
 </html>
