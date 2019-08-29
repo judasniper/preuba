@@ -20,8 +20,10 @@ function guardar (){
     //var apellido= document.getElementById('apellido').value;
     var ebais = document.getElementById('centroSalud').value;
     var fechaReceta = document.getElementById('fechaReceta').value;
-    var horaEntra = document.getElementById('horaEntra').value;
-
+    var horaEntra = document.getElementById('horaEntra').value; 
+    var horaDigita = document.getElementById('horaDigita').value;
+    var horaAcopio = document.getElementById('horaAcopio').value;
+    var horaRevisa = document.getElementById('horaRevisa').value;
 
     console.log(fechaReceta);
     db.collection("bdTiempos").add({
@@ -29,7 +31,10 @@ function guardar (){
         Receta : receta,
         FechaReceta: fechaReceta,
         FechaActual: n, 
-        HoraEntra : horaEntra
+        HoraEntra : horaEntra,
+        HoraDigita: horaDigita,
+        HoraAcopio: horaAcopio,
+        HoraRevisa: horaRevisa
                 
     })
     .then(function(docRef) {
@@ -71,7 +76,7 @@ db.collection("bdTiempos").onSnapshot((querySnapshot) => {
         <td>${doc.data().HoraAcopio}</td>
         <td>${doc.data().HoraRevisa}</td>
         <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')"> eliminar</button></td>
-        <td><button class="btn btn-warning"onclick="editar('${doc.id}','${doc.data().FechaActual}','${doc.data().Ebais}','${doc.data().Receta}','${doc.data().FechaReceta}','${doc.data().HoraEntra}')"> editar</button></td>
+        <td><button class="btn btn-warning"onclick="editar('${doc.id}','${doc.data().FechaActual}','${doc.data().Ebais}','${doc.data().Receta}','${doc.data().FechaReceta}','${doc.data().HoraEntra},'${doc.data().horaDigita},'${doc.data().horaAcopio},'${doc.data().horaRevisa}'')"> editar</button></td>
         </tr>        
         ` //<- ojo a estas comillas especiales
 
